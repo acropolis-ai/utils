@@ -22,11 +22,15 @@ do
 
   cd $filename-dir
   for las in *.las; do
+    echo "- converting LAS -> SHP ..."
     time las2ogr -i $las -o lpc.shp
+    echo "- converting SHP -> PGSQL ..."
     time shp2pgsql -a -D lpc public.lpc -W "latin1" > lpc.sql.bin
+    echo "- loading PGSQL into database..."
     time psql -h $pg_host -U $pg_user -d $pg_db < lpc.sql.bin
   done
 
+  echo "- cleaning up temp files..."
   cd ..
   rm $filename
   rm -rf $filename-dir
