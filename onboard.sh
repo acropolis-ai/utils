@@ -12,7 +12,7 @@ do
   if [[ ! $filename =~ \.zip$ ]]; then continue; fi
 
   echo "--> loading $filename ..."
-  wget $url
+  wget -q $url
   mkdir $filename-dir
   unzip -d $filename-dir $filename
 
@@ -23,8 +23,9 @@ do
   done
 
   cd ..
-  rm -rf $filename*
+  rm $filename
+  rm -rf $filename-dir
 
-  echo "finished $filename"
+  echo "--> finished $filename"
 
 done < "$input"
