@@ -14,7 +14,7 @@ do
   echo "--> loading $filename ..."
   wget -q $url
   mkdir $filename-dir
-  unzip -d $filename-dir $filename
+  unzip -qq -d $filename-dir $filename
 
   cd $filename-dir
   for las in *.las; do
