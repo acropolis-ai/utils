@@ -5,6 +5,10 @@ set -e
 input="$1"
 CR=$(printf '\r')
 
+pg_host="35.193.81.0"
+pg_user="importer"
+pg_db="acropoly"
+
 while IFS=$CR read -r url
 do
   filename=$(basename "$url")
@@ -18,9 +22,9 @@ do
 
   cd $filename-dir
   for las in *.las; do
-    las2ogr -i $las -o lpc.shp
-    shp2pgsql -a -D -s 26918:4326 lpc public.lpc -W "latin1" > lpc.sql
-    psql -h 35.193.81.0 -U importer -d acropoly < lpc.sql
+    time las2ogr -i $las -o lpc.shp
+    time shp2pgsql -a -D lpc public.lpc -W "latin1" > lpc.sql.bin
+    time psql -h $pg_host -U $pg_user -d $pg_db < lpc.sql.bin
   done
 
   cd ..
