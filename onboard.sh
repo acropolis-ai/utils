@@ -20,7 +20,7 @@ do
   for las in *.las; do
     las2ogr -i $las -o lpc.shp
     shp2pgsql -a -D -s 26918:4326 lpc public.lpc -W "latin1" > lpc.sql
-    psql -h 35.193.81.0 -U importer -d acropoly -f lpc.sql >/dev/null
+    psql -h 35.193.81.0 -U importer -d acropoly < lpc.sql
   done
 
   cd ..
