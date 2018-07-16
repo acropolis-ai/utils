@@ -1,5 +1,8 @@
 create extension postgis;
+
 drop table public.lpc;
+select DropGeometryColumn('public', 'lpc', 'geom');
+
 create table public.lpc (
   gid serial,
   return_num numeric(10,0),
@@ -9,6 +12,7 @@ create table public.lpc (
   return_tot numeric(10,0),
   gpstime numeric(10,0)
 );
+
 alter table public.lpc add primary key (gid);
 select AddGeometryColumn('public','lpc','geom','26918','POINT',4);
 create index on public.lpc using gist (geom);
