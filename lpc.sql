@@ -1,3 +1,4 @@
+create extension postgis;
 create table public.lpc (
   gid serial,
   return_num numeric(10,0),
