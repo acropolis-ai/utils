@@ -14,5 +14,4 @@ create table public.lpc (
 );
 
 alter table public.lpc add primary key (gid);
-select AddGeometryColumn('public','lpc','geom','26918','POINT',4);
-create index on public.lpc using gist (geom);
+select AddGeometryColumn('public','lpc','geom','0','POINT',4);
