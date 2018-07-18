@@ -1,8 +1,8 @@
 create extension postgis;
 
-drop table public.lpc;
+drop table onboard.lpc;
 
-create table public.lpc (
+create table onboard.lpc (
   gid serial,
   return_num numeric(10,0),
   angle numeric(10,0),
@@ -12,5 +12,5 @@ create table public.lpc (
   gpstime numeric(10,0)
 );
 
-alter table public.lpc add primary key (gid);
-select AddGeometryColumn('public','lpc','geom','0','POINT',4);
+alter table onboard.lpc add primary key (gid);
+select AddGeometryColumn('onboard', 'lpc', 'geom', '0', 'POINT', 4);
