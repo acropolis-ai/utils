@@ -1,7 +1,6 @@
 create extension postgis;
 
 drop table public.lpc;
-select DropGeometryColumn('public', 'lpc', 'geom');
 
 create table public.lpc (
   gid serial,
