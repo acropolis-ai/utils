@@ -19,22 +19,26 @@ do
   wget -q $url
   mkdir $filename-dir
   unzip -qq -d $filename-dir $filename
+  echo "--> DONE loading $filename ..."
 
   cd $filename-dir
   for las in *.las; do
-    echo "- converting LAS -> SHP ..."
+    echo "--> converting LAS -> SHP ..."
     time las2ogr -i $las -o lpc.shp
-    echo "- converting SHP -> PGSQL ..."
+    echo "--> DONE converting LAS -> SHP ..."
+    echo "--> converting SHP -> PGSQL ..."
     time shp2pgsql -a -D lpc public.lpc -W "latin1" > lpc.sql.bin
-    echo "- loading PGSQL into database..."
+    echo "--> DONE converting SHP -> PGSQL ..."
+    echo "--> loading PGSQL into database..."
     time psql -h $pg_host -U $pg_user -d $pg_db < lpc.sql.bin
+    echo "--> DONE loading PGSQL into database..."
   done
 
-  echo "- cleaning up temp files..."
+  echo "--> cleaning up temp files..."
   cd ..
   rm $filename
   rm -rf $filename-dir
 
-  echo "--> finished $filename"
+  echo "--> DONE $filename"
 
 done < "$input"
