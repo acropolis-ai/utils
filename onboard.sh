@@ -27,7 +27,7 @@ do
     time las2ogr -i $las -o lpc.shp
     echo "--> DONE converting LAS -> SHP ..."
     echo "--> converting SHP -> PGSQL ..."
-    time shp2pgsql -a -D lpc public.lpc -W "latin1" > lpc.sql.bin
+    time shp2pgsql -a -D lpc onboard.lpc -W "latin1" > lpc.sql.bin
     echo "--> DONE converting SHP -> PGSQL ..."
     echo "--> loading PGSQL into database..."
     time psql -h $pg_host -U $pg_user -d $pg_db < lpc.sql.bin
