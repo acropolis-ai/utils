@@ -1,6 +1,7 @@
 create extension postgis;
+create schema onboard;
 
-drop table onboard.lpc;
+drop table if exists onboard.lpc;
 
 create table onboard.lpc (
   gid serial,
