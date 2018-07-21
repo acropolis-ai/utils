@@ -14,4 +14,4 @@ create table onboard.lpc (
 );
 
 alter table onboard.lpc add primary key (gid);
-select AddGeometryColumn('onboard', 'lpc', 'geom', '0', 'POINT', 4);
+select AddGeometryColumn('onboard', 'lpc', 'geom', '0', 'POINT', 3);

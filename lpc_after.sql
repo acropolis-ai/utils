@@ -1,4 +1,4 @@
-create table onboard.lpc (
+create table public.lpc (
   gid serial,
   elevation double precision
 );
