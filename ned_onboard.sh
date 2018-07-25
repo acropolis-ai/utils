@@ -23,7 +23,7 @@ done < "$input"
 echo "--> DONE downloading files"
 
 echo "--> extracing zip files..."
-unzip -qq $filename
+unzip -qq \*.zip
 rm -rf *.zip
 echo "--> DONE extracting zip files"
 
